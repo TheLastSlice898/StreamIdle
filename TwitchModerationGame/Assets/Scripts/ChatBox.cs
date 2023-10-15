@@ -19,7 +19,7 @@ public class ChatBox : MonoBehaviour
     void Start()
     {
         sendButton.onClick.AddListener(SendMessage);
-        AddMessage("Streamer: Welcome to the chat.");
+        AddMessage($"<color=blue>Streamer:</color> Welcome to the chat.");
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class ChatBox : MonoBehaviour
         
         if (!bannedUser)
         {
-            string userMessage = "Moderator: " + message;
+            string userMessage = $"<color=red>Moderator:</color> {message}";
             AddMessage(userMessage);
             messageSend.text = "";
             AddRandomMessage();
@@ -46,14 +46,14 @@ public class ChatBox : MonoBehaviour
         if (message.StartsWith("!ban") && !bannedUser)
         {
             bannedUser = true;
-            AddMessage("Moderator: Moderator has banned the rude user.");
+            AddMessage("Moderator has banned the rude user.");
             messageSend.text = "";
             return;
         }
 
         if (message.StartsWith("!ban") && bannedUser)
         {
-            AddMessage("Moderator: The user is already banned.");
+            AddMessage("The user is already banned.");
             messageSend.text = "";
         }
     }
@@ -73,7 +73,7 @@ public class ChatBox : MonoBehaviour
             randomMessage = "Hehehe Im going to say bad words :)";
         }
 
-        string userMessage = randomUser + ": " + randomMessage;
+        string userMessage = $"<color=purple>{randomUser}</color>: {randomMessage}";
         AddMessage(userMessage);
     }
 
@@ -93,7 +93,7 @@ public class ChatBox : MonoBehaviour
             chatMessages[messageCount] = message;
             messageCount++;
         }
-
+       
         UpdateChatBox();
     }
 
