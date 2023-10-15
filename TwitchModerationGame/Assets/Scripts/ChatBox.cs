@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Random = UnityEngine.Random;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 
 public class ChatBox : MonoBehaviour
 {
@@ -12,13 +10,10 @@ public class ChatBox : MonoBehaviour
     public TMP_InputField messageSend;
     public Button sendButton;
 
-    public static event Action OnBanned;
-    
-
-    public bool bannedUser = false; //if a person in chat has been banned
-    public string[] chatMessages = new string[6]; //where the messages will be stored
-    public int messageCount = 0; //records the number of messages
-    public string[] users = { "MeowCats12", "SmartPlant", "IlikeCheese", "BananaMan", "FriendlyGuy", "CoolDude" };
+    private bool bannedUser = false; //if a person in chat has been banned
+    private string[] chatMessages = new string[6]; //where the messages will be stored
+    private int messageCount = 0; //records the number of messages
+    private string[] users = { "MeowCats12", "SmartPlant", "IlikeCheese", "BananaMan", "FriendlyGuy", "CoolDude" };
 
     // Start is called before the first frame update
     void Start()
@@ -30,15 +25,11 @@ public class ChatBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            SendMessage();
-        }
+        
     }
 
     void SendMessage()
     {
-
         string message = messageSend.text.Trim();
 
         if (message == "")
@@ -54,9 +45,8 @@ public class ChatBox : MonoBehaviour
 
         if (message.StartsWith("!ban") && !bannedUser)
         {
-            bannedUser = false;
+            bannedUser = true;
             AddMessage("Moderator has banned the rude user.");
-            OnBanned?.Invoke();
             messageSend.text = "";
             return;
         }
