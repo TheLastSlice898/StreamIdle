@@ -37,7 +37,7 @@ public class ChatBox : MonoBehaviour
         
         if (!bannedUser)
         {
-            string userMessage = "User: " + message;
+            string userMessage = "Moderator: " + message;
             AddMessage(userMessage);
             messageSend.text = "";
             AddRandomMessage();
